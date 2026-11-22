@@ -81,6 +81,30 @@ body{background:#fdf2f6;overflow-x:hidden;min-height:100vh}
 .detail-card .label{font-family:"Cormorant Garamond",serif;font-size:.8rem;color:#a08090;text-transform:uppercase;letter-spacing:2px;margin-bottom:.3rem}
 .detail-card .value{font-family:"Playfair Display",serif;font-size:.95rem;color:var(--rose-gold);font-weight:600;line-height:1.4}
 
+.gift-card{background:rgba(255,255,255,.75);backdrop-filter:blur(8px);border:1px solid rgba(183,110,121,.15);border-radius:20px;padding:2rem 1.5rem;margin-bottom:1.5rem;width:100%;max-width:450px;box-shadow:0 4px 20px rgba(183,110,121,.1)}
+.gift-card .emoji{font-size:2rem;margin:.8rem 0}
+.closing-text{font-family:"Great Vibes",cursive;font-size:1.8rem;color:var(--rose-gold);margin:2rem 0 1rem;line-height:1.4}
+
+/* Floating hearts */
+.floating-heart{position:absolute;color:#f8b4c8;opacity:.4;pointer-events:none;animation:floatHeart linear infinite}
+@keyframes floatHeart{0%{transform:translateY(0) scale(1);opacity:.4}50%{opacity:.6}100%{transform:translateY(-100vh) scale(.6);opacity:0}}
+
+/* Cherry blossom image accent */
+.blossom-accent{position:absolute;opacity:.15;pointer-events:none;border-radius:50%}
+
+/* Page nav */
+.page-nav{display:flex;justify-content:center;gap:.5rem;margin-top:2rem;flex-wrap:wrap}
+
+@media(max-width:400px){
+  .surprise-text{font-size:1.5rem}
+  .invited-text{font-size:1.6rem}
+  .bride-name{font-size:1.2rem}
+  .section-heading{font-size:1.6rem}
+  .cd-block{min-width:55px;padding:.6rem .4rem}
+  .cd-block .num{font-size:1.3rem}
+  .closing-text{font-size:1.4rem}
+}
+
 /* Countdown */
 .countdown-section{margin:1.5rem 0 2rem;width:100%;max-width:500px}
 .countdown-wrap{display:flex;justify-content:center;gap:.8rem;margin-top:1rem}
@@ -167,7 +191,7 @@ body{background:#fdf2f6;overflow-x:hidden;min-height:100vh}
     <div class="floral-divider"></div>
     <p class="invited-text canva-text">You Are Invited</p>
     <p class="shower-for canva-text">Baby Shower for</p>
-    <p class="bride-name canva-text">Sis. APPLE ALVAREZ</p>
+    <p class="bride-name canva-text">JEANNE APPLE ALVAREZ</p>
     <p class="heart-divider">💗</p>
     <div class="event-preview canva-text"></div>
     <button class="tap-btn canva-button" id="openBtn" aria-label="Tap to open invitation"> ✉️ Tap to Open Invitation </button>
@@ -232,6 +256,21 @@ body{background:#fdf2f6;overflow-x:hidden;min-height:100vh}
     <a href="https://maps.google.com/?q=MISC+Parramatta+NSW+2145+Australia" target="_blank" rel="noopener noreferrer" class="directions-btn canva-button" id="directionsBtn">📍 Get Directions</a>
    </div>
    <div class="floral-divider"></div>
+
+
+   <div class="gift-card canva-card">
+    <h2 class="section-heading canva-text" style="font-size:1.6rem">Gift Preference</h2>
+    <p class="section-body canva-text" style="margin-bottom:.5rem;color:#8a6070;text-align:center;direction:ltr;font-size:18.0168px;line-height:1.7;line-height:round(down, 1.7em, 1px);font-family:'YAFdJhX-538,0'"><canva-richtext style="display:contents"><span style="font-kerning:normal">Your love and presence are all we truly need. However, for those wishing to gift, a monetary contribution for the baby would be greatly appreciated.</span></canva-richtext></p>
+    <div class="emoji">🎁</div>
+   </div>
+   <div class="gift-card canva-card">
+    <h2 class="section-heading canva-text" style="font-size:1.6rem">Meal Contribution</h2>
+    <p class="section-body canva-text" style="margin-bottom:.5rem">Guests are kindly requested to cover the cost of their meal.</p>
+    <div class="emoji">🍽️</div>
+   </div>
+   <div class="floral-divider"></div>
+
+
    <!-- RSVP -->
    <div class="rsvp-section canva-panel">
     <h2 class="section-heading canva-text" style="font-size:1.6rem">Kindly RSVP</h2>
@@ -243,8 +282,15 @@ body{background:#fdf2f6;overflow-x:hidden;min-height:100vh}
     <!-- To use email: href="mailto:youremail@example.com?subject=RSVP Baby Shower" target="_blank" -->
     <!-- To use Google Form: replace window.open URL with your form link -->
    </div>
+
+   <p class="closing-text canva-text" id="closingText">We Can't Wait To Celebrate With You!</p>
+   <!-- Decorative blossom image -->
+   <img id="blossom-decor" src="https://images.pexels.com/photos/4366839/pexels-photo-4366839.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400" alt="Delicate pink cherry blossoms on a branch set against a bright white sky, capturing the essence of spring." loading="lazy" class="canva-image" style="width:200px;height:120px;object-fit:cover;border-radius:50%;opacity:.25;margin:1rem auto">
+
+
+
    <nav class="page-nav">
-    <button class="nav-btn canva-button" onclick="goPage(1)">← Back</button> <button class="nav-btn canva-button" onclick="goPage(3)">Gift &amp; Meal Info →</button>
+    <button class="nav-btn canva-button" onclick="goPage(1)">← Back</button>
    </nav>
   </section>
   <!-- ===== PAGE 3: GIFT & MEAL ===== -->
@@ -340,7 +386,7 @@ function createSparkles() {
 
 // Floating hearts for page 3
 function createHearts() {
-  const page = document.getElementById('page3');
+  const page = document.getElementById('page2');
   const hearts = ['♥', '♡', '❤', '💕'];
   for (let i = 0; i < 10; i++) {
     const h = document.createElement('div');
